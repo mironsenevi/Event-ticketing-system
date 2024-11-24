@@ -9,16 +9,20 @@ public class TicketPool {
         this.maxTicketCapacity = maxTicketCapacity;
     }
 
-    public synchronized void addTickets(int count){
+    public synchronized boolean addTickets(int count){
         if(availableTickets + count <= maxTicketCapacity){
             availableTickets += count;
             System.out.println(count + "tickets added. Total: " + availableTickets);
+            return true;
+        }else{
+            System.out.println("Exceeding ticket capacity");
+            return false;
         }
     }
 
-    public synchronized boolean removeTicket(){
-        if(availableTickets > 0){
-            availableTickets--;
+    public synchronized boolean removeTicket(int ticketsPerRemove){
+        if(availableTickets - ticketsPerRemove > 0){
+            availableTickets -= ticketsPerRemove;
             System.out.println("Tickets purchased. Remaining: " + availableTickets);
             return true;
         }else {

@@ -1,8 +1,9 @@
 package package1;
 
 public class Customer implements Runnable{
-    private final TicketPool ticketPool;
-    private final int retrievalInterval;
+    private TicketPool ticketPool;
+    private int retrievalInterval;
+    private int ticketsPerRemove;
 
     public Customer(TicketPool ticketPool, int retrievalInterval) {
         this.ticketPool = ticketPool;
@@ -11,7 +12,7 @@ public class Customer implements Runnable{
 
     public void run() {
         while(true) {
-            ticketPool.removeTicket();
+            ticketPool.removeTicket(ticketsPerRemove);
             try{
                 Thread.sleep(retrievalInterval);
             }catch (InterruptedException e) {

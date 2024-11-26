@@ -23,5 +23,16 @@ public class Main {
                 input.next();
             }
         }
+
+        //call the function according to the user input
+        if (number == 1){
+
+        } else if (number == 2) {
+
+        } else if (number == 3) {
+
+        }else {
+
+        }
     }
 }

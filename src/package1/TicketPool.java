@@ -9,6 +9,12 @@ public class TicketPool {
         this.maxTicketCapacity = maxTicketCapacity;
     }
 
+    /**
+     * add tickets to the ticketpool
+     *
+     * @param count amount of tickets
+     * @return true if ticket was added, false ticketQueue is full
+     */
     public synchronized boolean addTickets(int count){
         if(totalTickets + count <= maxTicketCapacity){
             totalTickets += count;
@@ -20,6 +26,12 @@ public class TicketPool {
         }
     }
 
+    /**
+     * remove ticket from the ticketpool
+     *
+     * @param ticketsPerRemove amount of tickets to be removed
+     * @return true if removal is success, false if no tickets available in the ticketPool
+     */
     public synchronized boolean removeTicket(int ticketsPerRemove){
         if(totalTickets - ticketsPerRemove > 0){
             totalTickets -= ticketsPerRemove;

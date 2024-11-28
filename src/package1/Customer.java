@@ -5,9 +5,10 @@ public class Customer implements Runnable{
     private int customerRetrievalRate;
     private int ticketsPerRemove;
 
-    public Customer(TicketPool ticketPool, int retrievalInterval) {
+    public Customer(TicketPool ticketPool, int retrievalInterval, int ticketsPerRemove) {
         this.ticketPool = ticketPool;
-        this.customerRetrievalRate = retrievalInterval;
+        customerRetrievalRate = retrievalInterval;
+        this.ticketsPerRemove = ticketsPerRemove;
     }
 
     public void run() {

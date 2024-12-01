@@ -1,24 +1,27 @@
 package package1;
 
-public class Vendor implements Runnable {
-    private final TicketPool ticketPool;
-    private final int ticketsPerRelease;
-    private final int ticketReleaseRate;      //why final?
+import java.math.BigDecimal;
 
-    public Vendor(TicketPool ticketPool, int ticketsPerRelease, int releaseInterval) {
+public class Vendor implements Runnable {
+    private TicketPool ticketPool;
+    private int totalTickets; //amount of tickets going to sell
+    private int ticketReleaseRate; //frequency of releasing
+
+    public Vendor(TicketPool ticketPool, int totalTickets, int releaseInterval) {
         this.ticketPool = ticketPool;
-        this.ticketsPerRelease = ticketsPerRelease;
+        this.totalTickets = totalTickets;
         this.ticketReleaseRate = releaseInterval;
     }
 
     public void run() {
-        while (true) {
-            ticketPool.addTickets(ticketsPerRelease);
+
+        for (int i = 0; i < totalTickets; i++) {
+            Ticket ticket = new Ticket(i,"simple event",new BigDecimal("2000"));
+            ticketPool.addTicket(ticket);
             try{
-                Thread.sleep(ticketReleaseRate);
-            }catch (InterruptedException e){
-                e.printStackTrace();
-                break;
+                Thread.sleep(ticketReleaseRate * 1000); // convert to millisecond
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }

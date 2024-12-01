@@ -1,13 +1,15 @@
 package package1;
+import java.math.BigDecimal;
+
 
 public class Ticket {
     private int ticketID;
-    private String ticketName;
-    private int ticketPrice;
+    private String eventName;
+    private BigDecimal ticketPrice;
 
-    public Ticket(int ticketID, String ticketName, int ticketPrice) {
+    public Ticket(int ticketID, String eventName, BigDecimal ticketPrice) {
         this.ticketID = ticketID;
-        this.ticketName = ticketName;
+        this.eventName = eventName;
         this.ticketPrice = ticketPrice;
     }
 
@@ -15,19 +17,19 @@ public class Ticket {
 
     public void setTicketID(int ticketID) {this.ticketID = ticketID;}
 
-    public String getTicketName() {return ticketName;}
+    public String getEventName() {return eventName;}
 
-    public void setTicketName(String ticketName) {this.ticketName = ticketName;}
+    public void setEventName(String ticketName) {this.eventName = ticketName;}
 
-    public int getTicketPrice() {return ticketPrice;}
+    public BigDecimal getTicketPrice() {return ticketPrice;}
 
-    public void setTicketPrice(int ticketPrice) {this.ticketPrice = ticketPrice;}
+    public void setTicketPrice(BigDecimal ticketPrice) {this.ticketPrice = ticketPrice;}
 
     @Override
     public String toString() {
         return "Ticket{" +
                 "ticketID=" + ticketID +
-                ", ticketName='" + ticketName + '\'' +
+                ", ticketName='" + eventName + '\'' +
                 ", ticketPrice=" + ticketPrice +
                 '}';
     }

@@ -12,14 +12,16 @@ public class Customer implements Runnable{
     }
 
     public void run() {
-        while(true) {
-            ticketPool.removeTicket(ticketsPerRemove);
-            try{
-                Thread.sleep(customerRetrievalRate);
-            }catch (InterruptedException e) {
-                e.printStackTrace();
-                break;
+
+        for (int i = 1; i < ticketsPerRemove; i++){
+            Ticket ticket =ticketPool.removeTicket();
+            System.out.println("Ticket is - " + ticket + " - Customer name is - " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(customerRetrievalRate * 1000); // convert to millisecond
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
+
     }
 }

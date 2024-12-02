@@ -14,10 +14,8 @@ public class TicketPool {
     }
 
     /**
-     * add tickets to the Ticket pool
-     *
-     * @param count amount of tickets
-     * @return true if ticket was added, false ticketQueue is full
+     * adds ticket to the ticket pool
+     * @param ticket that need to be added to the ticket pool
      */
     public synchronized void addTicket(Ticket ticket){
         // checks
@@ -36,10 +34,8 @@ public class TicketPool {
     }
 
     /**
-     * remove ticket from the Ticket Pool
-     *
-     * @param ticketsPerRemove amount of tickets to be removed
-     * @return true if removal is success, false if no tickets available in the ticketPool
+     * remove ticket from TicketPool
+     * @return Ticket the removed ticket from TicketPool
      */
     public synchronized Ticket removeTicket(){
         while(ticketQueue.isEmpty()){
